@@ -1,0 +1,434 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =======================================================
+    ANIMATION SYSTEM V2.0 - COMPREHENSIVE & COHESIVE
+======================================================= */
+
+/* CSS Custom Properties for Animation Standards */
+:root {
+  --anim-duration-instant: 150ms;
+  --anim-duration-fast: 200ms;
+  --anim-duration-normal: 300ms;
+  --anim-duration-medium: 400ms;
+  --anim-duration-slow: 500ms;
+  --anim-duration-very-slow: 700ms;
+
+  --anim-easing-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --anim-easing-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --anim-easing-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
+  --anim-easing-smooth: cubic-bezier(0.4, 0.0, 0.6, 1);
+  --anim-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  --scroll-behavior: smooth;
+}
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: var(--scroll-behavior);
+}
+
+/* GLOBAL PERFORMANCE – FIX IMAGE DELAYS */
+img {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  content-visibility: visible !important;
+  image-rendering: auto;
+}
+
+/* FIX header flicker */
+header, .header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: white !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  backface-visibility: hidden;
+  will-change: auto;
+}
+
+/* Accessibility: Disable animations for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --anim-duration-instant: 1ms;
+    --anim-duration-fast: 1ms;
+    --anim-duration-normal: 1ms;
+    --anim-duration-medium: 1ms;
+    --anim-duration-slow: 1ms;
+    --anim-duration-very-slow: 1ms;
+    --scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =======================================================
+    PAGE TRANSITIONS
+======================================================= */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pageExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.page-enter {
+  animation: pageEnter var(--anim-duration-normal) var(--anim-easing-smooth) forwards;
+}
+
+.page-exit {
+  animation: pageExit var(--anim-duration-fast) var(--anim-easing-standard) forwards;
+}
+
+/* =======================================================
+    SCROLL REVEAL ANIMATIONS
+======================================================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scroll-reveal {
+  opacity: 0;
+}
+
+.scroll-reveal.revealed {
+  animation: fadeInUp var(--anim-duration-slow) var(--anim-easing-smooth) forwards;
+}
+
+.scroll-reveal-down.revealed {
+  animation: fadeInDown var(--anim-duration-slow) var(--anim-easing-smooth) forwards;
+}
+
+.scroll-reveal-left.revealed {
+  animation: fadeInLeft var(--anim-duration-slow) var(--anim-easing-smooth) forwards;
+}
+
+.scroll-reveal-right.revealed {
+  animation: fadeInRight var(--anim-duration-slow) var(--anim-easing-smooth) forwards;
+}
+
+.scroll-reveal-fade.revealed {
+  animation: fadeIn var(--anim-duration-medium) var(--anim-easing-smooth) forwards;
+}
+
+.scroll-reveal-scale.revealed {
+  animation: scaleIn var(--anim-duration-medium) var(--anim-easing-smooth) forwards;
+}
+
+/* =======================================================
+    DROPDOWNS
+======================================================= */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slideDown {
+  animation: slideDown var(--anim-duration-fast) var(--anim-easing-decelerate) forwards;
+}
+
+/* =======================================================
+    HERO TEXT ANIMATIONS
+======================================================= */
+@keyframes fade-in-up {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.9s ease-out forwards;
+  opacity: 0;
+}
+
+/* Glow */
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(201,162,39,.5); }
+  50%      { text-shadow: 0 0 35px rgba(201,162,39,.8); }
+}
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+/* Typewriter */
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+.typewriter-text {
+  overflow: hidden;
+  border-right: 2px solid rgba(255,255,255,.7);
+  white-space: nowrap;
+  animation: typewriter 2.8s steps(80) forwards, blink-caret 1s step-end infinite 3s;
+  width: 0;
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgba(255,255,255,.7) }
+}
+@media (max-width: 768px) {
+  .typewriter-text {
+    white-space: normal;
+    border-right: none;
+    animation: fade-in-up 1s ease-out forwards;
+    width: auto;
+  }
+}
+
+/* =======================================================
+    PREMIUM STYLING
+======================================================= */
+.premium-gradient {
+  background: linear-gradient(135deg,#C9A227 0%,#F4D03F 50%,#D4AF37 100%);
+}
+.premium-text-gradient {
+  background: linear-gradient(135deg,#C9A227 0%,#F4D03F 50%,#D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.premium-border {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(135deg,#C9A227,#F4D03F,#D4AF37) border-box;
+}
+.premium-shadow {
+  box-shadow: 0 20px 40px -12px rgba(201,162,39,.25);
+}
+
+/* Hover lift */
+.premium-hover {
+  transition: transform var(--anim-duration-medium) var(--anim-easing-smooth),
+              box-shadow var(--anim-duration-medium) var(--anim-easing-smooth);
+}
+.premium-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 40px rgba(0,0,0,.18);
+}
+
+/* =======================================================
+    CARDS + INTERACTIONS
+======================================================= */
+.card-hover {
+  transition: transform var(--anim-duration-medium) var(--anim-easing-smooth),
+              box-shadow var(--anim-duration-medium) var(--anim-easing-smooth),
+              border-color var(--anim-duration-normal) var(--anim-easing-standard);
+}
+.card-hover:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,.14);
+}
+
+/* Link Hover Effects */
+.link-hover {
+  transition: color var(--anim-duration-fast) var(--anim-easing-standard);
+  position: relative;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width var(--anim-duration-normal) var(--anim-easing-smooth);
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}
+
+/* Buttons */
+.btn-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--anim-duration-normal) var(--anim-easing-smooth);
+}
+.btn-hover::before {
+  content:"";
+  position:absolute;
+  top:50%; left:50%;
+  width:0; height:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.15);
+  transform:translate(-50%,-50%);
+  transition: width var(--anim-duration-slow) var(--anim-easing-smooth),
+              height var(--anim-duration-slow) var(--anim-easing-smooth);
+}
+.btn-hover:hover::before {
+  width:260px; height:260px;
+}
+
+/* Button Scale Effect */
+.btn-scale {
+  transition: transform var(--anim-duration-fast) var(--anim-easing-bounce);
+}
+.btn-scale:active {
+  transform: scale(0.97);
+}
+.btn-scale:hover {
+  transform: scale(1.03);
+}
+
+/* =======================================================
+    LOADING + FEEDBACK (kept lightweight)
+======================================================= */
+.spinner {
+  border:4px solid rgba(201,162,39,.1);
+  border-top-color:#C9A227;
+  border-radius:50%;
+  width:50px; height:50px;
+  animation:spin .75s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Skeleton */
+.skeleton {
+  background:linear-gradient(90deg,#f0f0f0 25%,#e6e6e6 50%,#f0f0f0 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0% { background-position:200% 0 }
+  100% { background-position:-200% 0 }
+}
+
+/* =======================================================
+    MICRO ANIMATIONS
+======================================================= */
+.pulse {
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1 }
+  50%     { opacity:.7 }
+}
+
+.bounce-subtle {
+  animation:bounceSubtle 2s ease-in-out infinite;
+}
+@keyframes bounceSubtle {
+  0%,100% { transform:translateY(0) }
+  50%     { transform:translateY(-4px) }
+}
+
+/* =======================================================
+    ACCORDIONS
+======================================================= */
+.accordion-content {
+  transition:max-height .35s ease, opacity .35s ease;
+}
+.accordion-icon {
+  transition:transform .3s ease;
+}
+
+/* =======================================================
+    REMOVE EVERYTHING RELATED TO DELAYED IMAGE LOADING
+======================================================= */
+
+/* ❌ removed:
+   - fade-content
+   - fade-content-out
+   - lazy-fade-in
+   - progressive-image animations
+   - page-transition-container fades
+   - any opacity/transform on images
+*/
+
+/* These selectors stay empty on purpose,
+   ensuring they DO NOT override your instant image load behavior */
+.fade-content {}
+.fade-content-out {}
+.lazy-fade-in {}
+.lazy-fade-in.in-view {}
+.progressive-image img {}
+.page-transition-container {}

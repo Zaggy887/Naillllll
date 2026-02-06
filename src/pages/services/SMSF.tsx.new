@@ -1,0 +1,289 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, FileText, Calculator, TrendingUp, Shield, ChevronDown, Mail, Phone, CheckCircle } from 'lucide-react';
+
+const TaxAdvisory = () => {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const services = [
+    {
+      icon: <Calculator className="w-8 h-8 text-[#C9A227]" />,
+      title: 'Tax Planning & Strategy',
+      description: 'Proactive tax planning to minimize liabilities and maximize opportunities across all business structures.',
+      details: [
+        'Strategic tax minimization strategies',
+        'Entity structure optimization',
+        'Tax-effective salary packaging',
+        'Capital gains tax planning',
+        'Division 7A compliance'
+      ]
+    },
+    {
+      icon: <FileText className="w-8 h-8 text-[#C9A227]" />,
+      title: 'Tax Compliance',
+      description: 'Accurate and timely lodgement of all tax returns, BAS, IAS, and regulatory obligations.',
+      details: [
+        'Individual and company tax returns',
+        'Trust and partnership returns',
+        'BAS and IAS preparation',
+        'FBT returns and planning',
+        'Transfer pricing documentation'
+      ]
+    },
+    {
+      icon: <TrendingUp className="w-8 h-8 text-[#C9A227]" />,
+      title: 'Business Restructuring',
+      description: 'Strategic advice on entity structures, mergers, acquisitions, and succession planning.',
+      details: [
+        'Business structure reviews',
+        'Merger and acquisition support',
+        'Succession planning strategies',
+        'Asset protection structures',
+        'Family trust arrangements'
+      ]
+    },
+    {
+      icon: <Shield className="w-8 h-8 text-[#C9A227]" />,
+      title: 'Tax Disputes & ATO',
+      description: 'Expert representation in tax audits, objections, and ATO correspondence.',
+      details: [
+        'ATO audit defense',
+        'Objections and appeals',
+        'Private binding rulings',
+        'Tax debt negotiation',
+        'Settlement arrangements'
+      ]
+    },
+  ];
+
+  const faqs = [
+    {
+      question: 'When should I start tax planning for the financial year?',
+      answer: 'Ideally, tax planning should begin early in the financial year, allowing time to implement strategies before June 30. However, we recommend quarterly reviews to adjust for changes in income, expenses, and legislation. Strategic planning 3-6 months before year-end provides the most flexibility.'
+    },
+    {
+      question: 'What are the benefits of having a tax advisor versus doing it myself?',
+      answer: 'A tax advisor provides expertise in current legislation, identifies legitimate deductions you may miss, ensures compliance to avoid penalties, provides strategic planning for future years, and saves you time. The tax savings often exceed the advisory fees, while reducing your audit risk.'
+    },
+    {
+      question: 'How can I reduce my tax liability legally?',
+      answer: 'Legal tax minimization strategies include: maximizing deductible expenses, income splitting through family trusts, superannuation contributions, timing of income and expenses, capital gains tax discounts, and optimizing business structures. We tailor strategies to your specific circumstances.'
+    },
+    {
+      question: 'What should I do if I receive an ATO audit notice?',
+      answer: 'Contact us immediately before responding to the ATO. We will review the audit scope, gather necessary documentation, prepare responses, and represent you in all communications. Early professional involvement significantly improves outcomes and reduces stress.'
+    },
+    {
+      question: 'How long does it take to prepare my tax return?',
+      answer: 'Simple individual returns typically take 3-5 business days once we receive all documentation. Business returns can take 1-2 weeks depending on complexity. We prioritize accuracy over speed and ensure thorough reviews before lodgement. Rush services are available for urgent situations.'
+    },
+    {
+      question: 'What business structure is most tax-effective?',
+      answer: 'The optimal structure depends on your income level, business type, asset protection needs, and future plans. Common structures include sole trader, company, trust, or combinations. We analyze your situation comprehensively and recommend the most tax-effective structure aligned with your goals.'
+    },
+    {
+      question: 'Can you help with international tax issues?',
+      answer: 'Yes, we advise on foreign income reporting, tax residency issues, double taxation agreements, transfer pricing, and overseas business structures. Our international tax expertise ensures compliance with both Australian and foreign tax obligations.'
+    },
+    {
+      question: 'What is Division 7A and how does it affect me?',
+      answer: 'Division 7A prevents tax-free distribution of company profits to shareholders or associates through loans or payments. Non-compliant transactions are treated as unfranked dividends. We help structure compliant loan agreements and avoid Division 7A issues through proper planning.'
+    },
+    {
+      question: 'How often should I review my tax strategy?',
+      answer: 'We recommend annual comprehensive reviews before year-end, with quarterly check-ins for business clients. Additional reviews are warranted when you experience major life events (marriage, property purchase, business sale) or significant income changes.'
+    },
+    {
+      question: 'What records do I need to keep for tax purposes?',
+      answer: 'Keep all income records, receipts for expenses, bank statements, invoices, and asset purchase documents for 5 years (or 7 years for CGT assets). Digital records are acceptable. We can advise on cloud-based record-keeping systems that streamline the process.'
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: 'Michael Chen',
+      company: 'Chen Property Group',
+      text: 'Emma and her team saved us over $80,000 in tax through strategic restructuring. Their proactive approach to tax planning has been invaluable.'
+    },
+    {
+      name: 'Sarah Thompson',
+      company: 'Thompson Consulting',
+      text: 'The tax advisory team handled our ATO audit professionally and achieved a favorable outcome. Their expertise gave us complete confidence throughout the process.'
+    }
+  ];
+
+  const manager = {
+    name: 'Emma Finch',
+    role: 'Managing Partner & Tax Director',
+    credentials: 'CPA, CA, RTA',
+    email: 'emma.finch@harbourfinch.com.au',
+    phone: '+61 3 9000 0001',
+    bio: 'Emma leads our tax advisory practice with over 8 years of experience in corporate tax and advisory services, including her time as Tax Director at PwC.',
+    image: '/photoone.jpg'
+  };
+
+  return (
+    <div className="bg-white">
+      <section
+        className="relative py-28 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `linear-gradient(rgba(10, 37, 64, 0.8), rgba(201, 162, 39, 0.6)), url('https://images.pexels.com/photos/3760069/pexels-photo-3760069.jpeg?auto=compress&cs=tinysrgb&w=1920&h=600&fit=crop')`,
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Tax Advisory Services</h1>
+          <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed mb-8">
+            Strategic tax planning and compliance services that maximize opportunities and minimize risk.
+          </p>
+          <Link
+            to="/contact/book-consultation"
+            className="inline-flex items-center px-8 py-4 bg-[#C9A227] text-white rounded-lg font-semibold hover:bg-[#B38F1F] transition-all hover:scale-105"
+          >
+            Book a Free Consultation
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-[#0A2540] mb-4">Comprehensive Tax Services</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              From strategic planning to compliance and dispute resolution, we provide end-to-end tax advisory services for individuals and businesses.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {services.map((service, idx) => (
+              <div key={idx} className="bg-white p-8 rounded-xl shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 hover:border-[#C9A227]">
+                <div className="mb-4">{service.icon}</div>
+                <h3 className="text-2xl font-semibold text-[#0A2540] mb-3">{service.title}</h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <ul className="space-y-2">
+                  {service.details.map((detail, i) => (
+                    <li key={i} className="flex items-start text-sm text-gray-600">
+                      <CheckCircle className="w-4 h-4 text-[#C9A227] mr-2 mt-0.5 flex-shrink-0" />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <img
+                src={manager.image}
+                alt={manager.name}
+                className="w-full h-96 object-contain rounded-2xl shadow-lg"
+              />
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold text-[#0A2540] mb-2">Meet Your Tax Director</h2>
+              <h3 className="text-2xl text-[#1B4765] font-semibold mb-2">{manager.name}</h3>
+              <p className="text-[#C9A227] font-semibold mb-4">{manager.credentials}</p>
+              <p className="text-gray-600 mb-6 leading-relaxed">{manager.bio}</p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href={`mailto:${manager.email}`}
+                  className="inline-flex items-center justify-center px-6 py-3 bg-[#0A2540] text-white rounded-lg font-semibold hover:bg-[#1B4765] transition-colors"
+                >
+                  <Mail className="w-5 h-5 mr-2" />
+                  Email {manager.name.split(' ')[0]}
+                </a>
+                <a
+                  href={`tel:${manager.phone}`}
+                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-[#0A2540] text-[#0A2540] rounded-lg font-semibold hover:bg-[#0A2540] hover:text-white transition-colors"
+                >
+                  <Phone className="w-5 h-5 mr-2" />
+                  {manager.phone}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-[#F5F1EC]">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-[#0A2540] mb-12 text-center">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => (
+              <div key={idx} className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:border-[#C9A227] transition-colors">
+                <button
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  className="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+                >
+                  <span className="font-semibold text-[#0A2540] pr-4">{faq.question}</span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-[#C9A227] flex-shrink-0 transition-transform duration-300 ${
+                      openFaq === idx ? 'transform rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openFaq === idx ? 'max-h-96' : 'max-h-0'
+                  }`}
+                >
+                  <div className="px-6 pb-5 text-gray-600 leading-relaxed">
+                    {faq.answer}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-bold text-[#0A2540] mb-12 text-center">What Our Clients Say</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial, idx) => (
+              <div key={idx} className="bg-[#F5F1EC] p-8 rounded-xl shadow-md">
+                <p className="text-gray-700 italic mb-6 leading-relaxed">"{testimonial.text}"</p>
+                <div>
+                  <p className="font-semibold text-[#0A2540]">{testimonial.name}</p>
+                  <p className="text-sm text-gray-600">{testimonial.company}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-[#0A2540] text-white">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold mb-6">Ready to Optimize Your Tax Position?</h2>
+          <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+            Our tax advisors are ready to help you navigate complex tax legislation, identify opportunities, and ensure full compliance. Book a consultation today to discuss your tax strategy.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/contact/book-consultation"
+              className="inline-flex items-center justify-center px-8 py-4 bg-[#C9A227] text-white rounded-lg font-semibold hover:bg-[#B38F1F] transition-all hover:scale-105"
+            >
+              Book a Consultation
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+            <a
+              href={`mailto:${manager.email}`}
+              className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-[#0A2540] transition-colors"
+            >
+              <Mail className="w-5 h-5 mr-2" />
+              Email Our Team
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default TaxAdvisory;
