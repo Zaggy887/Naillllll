@@ -226,10 +226,10 @@ header, .header {
   opacity: 0;
 }
 
-/* Glow */
+/* Glow - Salon Rose Gold */
 @keyframes glow {
-  0%, 100% { text-shadow: 0 0 20px rgba(201,162,39,.5); }
-  50%      { text-shadow: 0 0 35px rgba(201,162,39,.8); }
+  0%, 100% { text-shadow: 0 0 20px rgba(183, 110, 121, 0.5); }
+  50%      { text-shadow: 0 0 35px rgba(212, 165, 165, 0.8); }
 }
 .animate-glow {
   animation: glow 3s ease-in-out infinite;
@@ -261,13 +261,13 @@ header, .header {
 }
 
 /* =======================================================
-    PREMIUM STYLING
+    PREMIUM STYLING - LUXURY SALON THEME
 ======================================================= */
 .premium-gradient {
-  background: linear-gradient(135deg,#C9A227 0%,#F4D03F 50%,#D4AF37 100%);
+  background: linear-gradient(135deg, #B76E79 0%, #D4A5A5 50%, #F9A8D4 100%);
 }
 .premium-text-gradient {
-  background: linear-gradient(135deg,#C9A227 0%,#F4D03F 50%,#D4AF37 100%);
+  background: linear-gradient(135deg, #B76E79 0%, #D4A5A5 50%, #F9A8D4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -275,10 +275,10 @@ header, .header {
   border: 2px solid transparent;
   background:
     linear-gradient(white, white) padding-box,
-    linear-gradient(135deg,#C9A227,#F4D03F,#D4AF37) border-box;
+    linear-gradient(135deg, #B76E79, #D4A5A5, #F9A8D4) border-box;
 }
 .premium-shadow {
-  box-shadow: 0 20px 40px -12px rgba(201,162,39,.25);
+  box-shadow: 0 20px 40px -12px rgba(183, 110, 121, 0.25);
 }
 
 /* Hover lift */
@@ -361,8 +361,8 @@ header, .header {
     LOADING + FEEDBACK (kept lightweight)
 ======================================================= */
 .spinner {
-  border:4px solid rgba(201,162,39,.1);
-  border-top-color:#C9A227;
+  border:4px solid rgba(183, 110, 121, 0.1);
+  border-top-color:#B76E79;
   border-radius:50%;
   width:50px; height:50px;
   animation:spin .75s linear infinite;
