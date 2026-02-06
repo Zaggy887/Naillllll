@@ -21,7 +21,7 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
 interface CalculationHistory {
   id?: string;
@@ -69,18 +69,26 @@ const InteractiveCalculator: React.FC = () => {
 
   const loadHistory = async () => {
     try {
-      const { data, error } = await supabase
-        .from('calculator_history')
-        .select('*')
-        .order('timestamp', { ascending: false })
-        .limit(50);
+      if (supabase) {
+        const { data, error } = await supabase
+          .from('calculator_history')
+          .select('*')
+          .order('timestamp', { ascending: false })
+          .limit(50);
 
-      if (error) throw error;
-      if (data) {
-        setHistory(data.map(item => ({
-          ...item,
-          timestamp: new Date(item.timestamp)
-        })));
+        if (error) throw error;
+        if (data) {
+          setHistory(data.map(item => ({
+            ...item,
+            timestamp: new Date(item.timestamp)
+          })));
+          return;
+        }
+      }
+
+      const localHistory = localStorage.getItem('calculator-history');
+      if (localHistory) {
+        setHistory(JSON.parse(localHistory));
       }
     } catch (error) {
       const localHistory = localStorage.getItem('calculator-history');
@@ -98,11 +106,15 @@ const InteractiveCalculator: React.FC = () => {
     };
 
     try {
-      const { error } = await supabase
-        .from('calculator_history')
-        .insert([newEntry]);
+      if (supabase) {
+        const { error } = await supabase
+          .from('calculator_history')
+          .insert([newEntry]);
 
-      if (error) throw error;
+        if (error) throw error;
+      } else {
+        throw new Error('Supabase not available');
+      }
     } catch (error) {
       const localHistory = [newEntry, ...history.slice(0, 49)];
       localStorage.setItem('calculator-history', JSON.stringify(localHistory));
@@ -113,15 +125,18 @@ const InteractiveCalculator: React.FC = () => {
 
   const clearHistory = async () => {
     try {
-      const { error } = await supabase
-        .from('calculator_history')
-        .delete()
-        .neq('id', '00000000-0000-0000-0000-000000000000');
+      if (supabase) {
+        const { error } = await supabase
+          .from('calculator_history')
+          .delete()
+          .neq('id', '00000000-0000-0000-0000-000000000000');
 
-      if (error) throw error;
+        if (error) throw error;
+      }
     } catch (error) {
-      localStorage.removeItem('calculator-history');
+      // Ignore errors
     }
+    localStorage.removeItem('calculator-history');
     setHistory([]);
   };
 
